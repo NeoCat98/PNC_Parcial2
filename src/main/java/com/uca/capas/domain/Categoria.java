@@ -18,11 +18,11 @@ public class Categoria {
 	@Id
 	@Column(name="c_categoria")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer codigoCategoria;
+	private Integer c_categoria;
 	
 	@Column(name="s_categoria")
-	@Size(max = 50, message = "El campo nombre de la categoria no debe de ser mayor a 50 caracteres")
-	@NotEmpty(message = "No puede estar vacio")
+	@Size(max = 50, message = "El campo sobrepasa la cantidad de 50 caracteres")
+	@NotEmpty(message = "El campo nombre categoría no puede estar vacío")
 	private String s_categoria;
 
 	@OneToMany(mappedBy = "categoria",fetch = FetchType.EAGER)
@@ -31,14 +31,18 @@ public class Categoria {
 	public Categoria() {
 		
 	}
-	
-	public Integer getCodigoCategoria() {
-		return codigoCategoria;
+
+	public Integer getC_categoria() {
+		return c_categoria;
 	}
 
-	public void setCodigoCategoria(Integer codigoCategoria) {
-		this.codigoCategoria = codigoCategoria;
+
+
+	public void setC_categoria(Integer c_categoria) {
+		this.c_categoria = c_categoria;
 	}
+
+
 
 	public String getS_categoria() {
 		return s_categoria;

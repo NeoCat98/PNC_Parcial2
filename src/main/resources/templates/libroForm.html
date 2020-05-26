@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insertar Libro</title>
+</head>
+<body>
+	<h1>Insertar Libro</h1>
+	<form action="/insertarLibro" method="post" th:object="${libros}">
+		<div>
+			<label>T&iacute;tulo:</label>
+			<input type="text" th:field="${libros.s_titulo}"><br>
+			<span th:errors="*{s_titulo}"></span>
+		</div><br>
+		<div>
+			<label>Autor:</label>
+			<input type="text" th:field="*{s_autor}"><br>
+			<span th:errors="*{s_autor}"></span>
+		</div><br>
+		<div>
+			<label>ISBN:</label>
+			<input type="text" th:field="*{s_isbn}"><br>
+			<span th:errors="*{s_isbn}"></span>
+		</div><br>
+		<div>
+			<label>Categoria:</label>
+			<select  th:field="${libros.c_categoriafk}">
+		  		<option th:each="cat : ${categorias}" th:value="${cat.c_categoria}" th:text="${cat.s_categoria}"></option>
+			</select>
+		</div><br>
+		<div>
+			<label>Estado:</label>
+			<input type="checkbox" th:field="*{b_estado}" value="true">
+		</div><br>
+		<input type="submit" value="Guardar">
+	</form>
+</body>
+</html>

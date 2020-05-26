@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -21,18 +22,23 @@ public class Libros {
 	@Id
 	@Column(name="c_libro")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer codigoLibro;
+	private Integer c_libro;
 	
 	@Column(name="s_titulo")
-	@Size(max = 500,message = "El campo titulo no debe de ser mayor a 500 caracteres")
-	@NotEmpty(message = "No puede estar vacio")
+	@Size(max = 500,message = "El campo titulo sobrepasa la cantidad de 500 caracteres")
+	@NotEmpty(message = "El campo no puede estar vacío")
 	private String s_titulo;
 	
 	@Column(name="s_autor")
-	@Size(max = 150, message = "El campo autor no debe de ser mayor a 150 caracteres")
-	@NotEmpty(message = "No puede estar vacio")
+	@Size(max = 150, message = "El campo autor sobrepasa la cantidad de 150 caracteres")
+	@NotEmpty(message = "El campo no puede estar vacío")
 	private String s_autor;
 
+	@Column(name="s_isbn")
+	@Size(max = 10, message = "El campo ISBN sobrepasa la cantidad de 10 caracteres")
+	@NotEmpty(message = "El campo no puede estar vacío")
+	private String s_isbn;
+	
 	@Column(name="f_ingreso")
 	private Date f_ingreso;
 	
@@ -40,18 +46,19 @@ public class Libros {
 	private boolean b_estado; 
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@Column(name="c_categoria")
+	@JoinColumn(name="c_categoria")
 	private Categoria categoria;
 	
 	@Transient
-	private Integer c_categoria;
+	private Integer c_categoriafk;
 
-	public Integer getCodigoLibro() {
-		return codigoLibro;
+
+	public Integer getC_libro() {
+		return c_libro;
 	}
 
-	public void setCodigoLibro(Integer codigoLibro) {
-		this.codigoLibro = codigoLibro;
+	public void setC_libro(Integer c_libro) {
+		this.c_libro = c_libro;
 	}
 
 	public String getS_titulo() {
@@ -86,12 +93,12 @@ public class Libros {
 		this.categoria = categoria;
 	}
 
-	public Integer getC_categoria() {
-		return c_categoria;
+	public Integer getC_categoriafk() {
+		return c_categoriafk;
 	}
 
-	public void setC_categoria(Integer c_categoria) {
-		this.c_categoria = c_categoria;
+	public void setC_categoriafk(Integer c_categoriafk) {
+		this.c_categoriafk = c_categoriafk;
 	}
 
 	public boolean isB_estado() {
@@ -102,5 +109,16 @@ public class Libros {
 		this.b_estado = b_estado;
 	}
 	
+	public String getS_isbn() {
+		return s_isbn;
+	}
+
+	public void setS_isbn(String s_isbn) {
+		this.s_isbn = s_isbn;
+	}
+	
+	public Libros() {
+		
+	}
 	
 }

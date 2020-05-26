@@ -21,7 +21,7 @@ public class LibrosDAOImpl implements LibrosDAO{
 	@Override
 	public List<Libros> findAll() throws DataAccessException {
 		StringBuffer sb = new StringBuffer();
-		sb.append("select * from public.cat_libros");
+		sb.append("select * from public.cat_libro");
 		Query query = entityManager.createNativeQuery(sb.toString(), Libros.class);
 		List<Libros> resultset = query.getResultList();
 		return resultset;
